@@ -1,13 +1,25 @@
 import { ShoppingCart } from '@mui/icons-material'
 import { NavLink } from 'react-router-dom'
-import { CartIcon, CartIndicator, Container, NavContainer, NavLinks } from './styles'
+import { useShoppingCart } from '../../context/ShoppingCartContext'
+import {
+  CartIcon,
+  CartIndicator,
+  Container,
+  NavContainer,
+  NavLinks
+} from './styles'
 
 const Navbar = () => {
+  const { openCart, cartQuantity } = useShoppingCart()
+
   return (
     <Container>
       <NavContainer>
         <NavLinks>
-          <NavLink to="/" className={({ isActive }) => (isActive ? 'link active' : 'link')}>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? 'link active' : 'link')}
+          >
             home
           </NavLink>
           <NavLink to="/store" className="link">
@@ -17,10 +29,12 @@ const Navbar = () => {
             about
           </NavLink>
         </NavLinks>
-        <CartIcon>
-          <ShoppingCart />
-          <CartIndicator>0</CartIndicator>
-        </CartIcon>
+        {cartQuantity > 0 && (
+          <CartIcon onClick={openCart}>
+            <ShoppingCart />
+            <CartIndicator>{cartQuantity}</CartIndicator>
+          </CartIcon>
+        )}
       </NavContainer>
     </Container>
   )
