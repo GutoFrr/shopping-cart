@@ -41,8 +41,7 @@ export const ContentTitle = styled.div`
   h3 {
     font-size: 20px;
     font-weight: 500;
-    color: ${props => props.theme.colors.text};
-    opacity: 0.7;
+    color: ${props => props.theme.colors.subtitle};
   }
 `
 
@@ -77,6 +76,7 @@ export const InCartButtons = styled.div`
 
   span {
     font-size: 24px;
+    color: ${props => props.theme.colors.subtitle};
   }
 `
 
